@@ -154,3 +154,9 @@ const retrievedPoints = decodeShares(encodedShares, proofs);
 const reconstructedSecret = reconstructSecret(retrievedPoints, k);
 console.log(`Reconstructed secret: ${reconstructedSecret.toString()}`);
 ```
+
+#### References
+- [Lagrange Interpolation Formula](https://www.pw.live/exams/school/lagrange-interpolation-formula/)
+- [Splitting a Secret by Mozilla](https://github.com/getsops/sops/tree/main/shamir#splitting-a-secret)
+- [Shamir Secrets](https://github.com/adviksinghania/shamir-secret-sharing)
+- [ThresholdJS/](http://karlgluck.github.io/ThresholdJS/)
