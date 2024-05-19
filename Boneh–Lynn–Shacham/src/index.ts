@@ -1,3 +1,3 @@
-import { Add } from './Add.js';
+import { AltBn128 } from './AltBn128.js';
 
-export { Add };
+export { AltBn128 };
