@@ -1,6 +1,4 @@
-# SSS
-
-# Cryptographic Primitives Implementation on O1.js
+# Cryptographic Primitives Implementation with `O1.js`
 
 This repository contains two cryptographic primitives which can be further developed for the o1.js library.
 
@@ -118,3 +116,41 @@ $$
 
 Using `O1.js`, a zero-knowledge proof can be generated during the creation of each share, allowing share holders to prove their ownership without reconstructing the secret. This is particularly useful for verifying the authenticity of shares, especially for users with significant roles or influence, and therefore prevent fake share ownership claims.
 
+### Run Project
+
+- `npm run build`
+- `node build/src/ShamirSecret.js`
+
+### Proof Of Concept implementation
+- Chose a secret work or sentence, transform it into its ascii representation typed to number
+```js
+// Create secret
+const secret = "BOBER";
+// Convert string to ascii numbers
+const asciiNumbers = stringToAsciiNumber(secret);
+console.log(`secret '${secret}' to number: ${asciiNumbers}`);
+```
+
+- Compute polynomial and return points
+```js
+// Shares to break secret into
+const k = 3;
+// Compute polynomial and return points in plane
+const points = generatePoints(asciiNumbers, k);
+```
+
+- Theoretical POC: Shares are encoded and the proof of generation is also returned. Each share is linked to a proof which can be passed to a `verifyShareProof()` function to prove that a user with a share also has its respective proof.
+```js
+// Encode points into Base64 to represent shares
+const encodedShares, proofs = encodeShares(points);
+
+// Verify that user holds a real share by computing the proof
+bool result = verifyShareProof(proofs);
+result.assert(true);
+
+// Decode shares and use Lagrange Interpolation to retrieve points 
+const retrievedPoints = decodeShares(encodedShares, proofs);
+
+const reconstructedSecret = reconstructSecret(retrievedPoints, k);
+console.log(`Reconstructed secret: ${reconstructedSecret.toString()}`);
+```
