@@ -1,6 +1,8 @@
 # Cryptographic Primitives Implementation with `O1.js`
 
 This repository contains two cryptographic primitives which can be further developed for the o1.js library.
+- BLS
+- Shamir Secret Sharing
 
 ## BLS
 
