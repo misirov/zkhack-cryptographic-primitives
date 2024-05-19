@@ -14,9 +14,7 @@ BLS (Boneh–lynn–shacham) signature scheme is a digital signature scheme that
 3. Sign a message $m$ by computing $h(m)^x$.
 4. Verify the signature by checking if $e(h(m)^x,g_1) = e(h(m), g_1^x)$.
 
-### The components
-
-#### Elliptic curve
+### Elliptic curve
 
 For BLS, the elliptic curve that is canonically used is the BLS12-381 curve, so our first step consisted in creating this elliptic curve object via the API exposed by `o1js`. However, we found that the API does not allow for the creation of curves whose base field is greater than 256 bits. Hence, we had to choose a different curve. _Furthermore we noticed that the `BLS12_381` parameters provided in the curve examples parameters for `o1js` was not correct, so we opened a [pull request fixing this](https://github.com/o1-labs/o1js-bindings/pull/275)._
 
